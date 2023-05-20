@@ -36,6 +36,8 @@ public:
 		}
 	}
 	Flat& operator= (const Flat& flat) {
+		this->size = flat.size;
+		this->number = flat.number;
 		if (this != &flat) {
 			this->size = flat.size;
 			this->number = flat.number;

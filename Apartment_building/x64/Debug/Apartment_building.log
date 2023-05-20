@@ -1,5 +1,7 @@
 ﻿  Apartment_building.cpp
 C:\Users\79009\source\repos\Apartment_building\Apartment_building\Flat.h(3,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  Flat.cpp
+C:\Users\79009\source\repos\Apartment_building\Apartment_building\Flat.h(3,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
   House.cpp
 C:\Users\79009\source\repos\Apartment_building\Apartment_building\Flat.h(3,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
   Создание кода...
