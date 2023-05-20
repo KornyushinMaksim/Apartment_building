@@ -27,20 +27,6 @@ public:
 			flats[i] = other.flats[i];
 		}
 	}
-	House(Flat& flat, int number)
-	{
-		Flat* new_flats = new Flat[size + 1];
-		for (int i = 0; i < number; i++) {
-			new_flats[i] = flats[i];
-		}
-		new_flats[number] = flat;
-		for (int i = number; i < size; i++) {
-			new_flats[i + 1] = flats[i];
-		}
-		delete[] flats;
-		flats = new_flats;
-		size++;
-	}
 	House() : House(0, 0, nullptr) {}
 	~House()
 	{
