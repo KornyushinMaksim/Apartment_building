@@ -6,44 +6,56 @@ using namespace std;
 class Flat
 {
 private:
-	Human* tenants_of_the_flat;
 	int size;
 	int number;
+	Human* tenants_of_the_flat;
 public:
-	Flat()
+	Flat(int size, int number, Human* humans)
 	{
-		tenants_of_the_flat = nullptr;
-		size = 0;
-		number = 0;
+		this->size = size;
+		this->number = number;
+		if (humans) {
+			tenants_of_the_flat = new Human[size];
+			for (int i = 0; i < size; i++) {
+				copy_human(this->tenants_of_the_flat[i], tenants_of_the_flat[i]);
+			}
+		}
 	}
-	Flat(Human& human)
-	{
-		//if (human) {
-			size++;
-			add_human(human);
-			//Human* temp = new Human[this->size];
-			//for (int i = 0; i < this->size; i++) {
-			//	copy_human(temp[i], human[i]);
-			//}
-		//}
-	}
+	Flat() : Flat(0, 0, nullptr) {}
 	Flat(const Flat& other)
 	{
-		for (int i = 0; i < other.size; i++) {
-			this->tenants_of_the_flat[i] = other.tenants_of_the_flat[i];
-		}
 		this->size = other.size;
 		this->number = other.number;
+		if (other.tenants_of_the_flat)
+		{
+			tenants_of_the_flat = new Human[other.size];
+			for (int i = 0; i < other.size; i++) {
+				copy_human(tenants_of_the_flat[i], other.tenants_of_the_flat[i]);
+				//tenants_of_the_flat[i] = other.tenants_of_the_flat[i];
+			}
+		}
 	}
+	Flat& operator= (const Flat& flat) {
+		if (this != &flat) {
+			this->size = flat.size;
+			this->number = flat.number;
+			tenants_of_the_flat = new Human[flat.size];
+			for (int i = 0; i < flat.size; i++) {
+				copy_human(tenants_of_the_flat[i], flat.tenants_of_the_flat[i]);
+			}
+		}
+		return *this;
+	}
+
+	void copy_human(Human& new_human, Human& this_human);
+	void add_human(Human& human);
+	string to_print_flat();
+
 	~Flat()
 	{
 		if (tenants_of_the_flat) {
 			delete[] tenants_of_the_flat;
 		}
 	}
-
-	void copy_human(Human& new_human, Human& this_human);
-	void add_human(Human& human);
-	string to_print_flat();
 };
 

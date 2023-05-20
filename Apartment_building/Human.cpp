@@ -11,7 +11,5 @@ string Human::to_print_human()
     s.append("\n");
     s.append(to_string(this->age));
     s.append("\n");
-    //s.append("..............");
-    //s.append("\n");
     return s;
 }

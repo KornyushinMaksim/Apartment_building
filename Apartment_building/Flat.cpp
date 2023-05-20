@@ -1,6 +1,6 @@
 #include "Flat.h"
 
-void Flat::copy_human(Human& new_human, Human& human)
+inline void Flat::copy_human(Human& new_human, Human& human)
 {
 	new_human.set_name(human.get_name());
 	new_human.set_lastname(human.get_lastname());
@@ -10,7 +10,7 @@ void Flat::copy_human(Human& new_human, Human& human)
 
 void Flat::add_human(Human& human)
 {
-	//if (human) {
+	if (tenants_of_the_flat != nullptr) {
 		Human* temp = new Human[size + 1];
 		for (int i = 0; i < size; i++) {
 			copy_human(temp[i], tenants_of_the_flat[i]);
@@ -19,7 +19,13 @@ void Flat::add_human(Human& human)
 		delete[] tenants_of_the_flat;
 		tenants_of_the_flat = temp;
 		size++;
-	//}
+	}
+	else {
+		this->size = 1;
+		this->number = 0;
+		tenants_of_the_flat = new Human[size];
+		copy_human(*tenants_of_the_flat, human);
+	}
 }
 
 string Flat::to_print_flat()

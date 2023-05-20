@@ -7,12 +7,24 @@ private:
 	int size;
 	Flat* flats;
 public:
-	House(Flat*& flats, int number, int size)
+	House(int number, int size, Flat* flats)
 	{
 		this->number = number;
 		this->size = size;
-		for (int i = 0; i < size; i++) {
-			this->flats[i] = flats[i];
+		if (flats) {
+			flats = new Flat[size];
+			for (int i = 0; i < size; i++) {
+				this->flats[i] = flats[i];
+			}
+		}
+	}
+	House(House& other)
+	{
+		number = other.number;
+		size = other.size;
+		flats = new Flat[other.size];
+		for (int i = 0; i < other.size; i++) {
+			flats[i] = other.flats[i];
 		}
 	}
 	House(Flat& flat, int number)
@@ -29,7 +41,7 @@ public:
 		flats = new_flats;
 		size++;
 	}
-	House() : flats{ nullptr }, number{ 0 }, size{ 0 } {}
+	House() : House(0, 0, nullptr) {}
 	~House()
 	{
 		if (flats) {
@@ -37,7 +49,7 @@ public:
 		}
 	}
 
-	void add_flat(Flat flat);
+	void add_flat(Flat& flat);
 	string to_print_house();
 };
 
