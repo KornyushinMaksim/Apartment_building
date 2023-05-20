@@ -49,6 +49,8 @@ public:
 
 	void copy_human(Human& new_human, Human& this_human);
 	void add_human(Human& human);
+	void del_human(int index);
+	//void del_human(const char*);
 	string to_print_flat();
 
 	~Flat()

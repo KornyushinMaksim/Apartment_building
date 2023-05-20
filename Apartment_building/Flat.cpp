@@ -28,6 +28,24 @@ void Flat::add_human(Human& human)
 	}
 }
 
+void Flat::del_human(int index)
+{
+	if (tenants_of_the_flat) {
+		Human* temp = new Human[size - 1];
+		for (int i = 0, j = 0; i < size - 1; i++, j++) {
+			if (i != index - 1) {
+				copy_human(temp[i], tenants_of_the_flat[j]);
+			}
+			else {
+				copy_human(temp[i], tenants_of_the_flat[++j]);
+			}
+		}
+		delete[] tenants_of_the_flat;
+		tenants_of_the_flat = temp;
+		size--;
+	}
+}
+
 string Flat::to_print_flat()
 {
 	string s = "";
